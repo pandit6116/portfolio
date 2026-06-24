@@ -1,5 +1,6 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useParams } from 'react-router-dom'
 import { FiArrowRight, FiGithub, FiLinkedin } from 'react-icons/fi'
 import { AppShell } from '../layout/AppShell'
 import { profile, stats } from '../data/portfolioData'
@@ -18,7 +19,8 @@ const scrollToSection = (sectionId) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
-  window.history.replaceState({}, '', `${window.location.pathname}${window.location.search}#${sectionId}`)
+  const nextHash = sectionId === 'home' ? '' : `/${sectionId}`
+  window.history.replaceState({}, '', `${window.location.pathname}${window.location.search}${nextHash ? `#${nextHash}` : ''}`)
 }
 
 const AboutSection = lazy(() => import('../sections/AboutSection').then((module) => ({ default: module.AboutSection })))
@@ -34,6 +36,21 @@ function SectionFallback() {
 }
 
 export function Home() {
+  const { section } = useParams()
+
+  useEffect(() => {
+    const targetId = section && section !== 'home' ? section : 'home'
+    const target = document.getElementById(targetId)
+
+    if (target) {
+      const offset = 96
+      const top = target.getBoundingClientRect().top + window.scrollY - offset
+      window.scrollTo({ top, left: 0, behavior: 'auto' })
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
+  }, [section])
+
   return (
     <AppShell>
       <section id="home" className="mx-auto flex max-w-7xl flex-col gap-10 px-4 pb-24 pt-16 sm:px-6 lg:px-8 lg:pb-28 lg:pt-24">

@@ -15,7 +15,7 @@ export function ActivitySection() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="glass-panel rounded-[1.8rem] bg-gradient-to-br from-violet-600 to-fuchsia-500 p-8 text-white"
+          className="relative overflow-hidden rounded-[1.8rem] border border-white/20 bg-gradient-to-br from-violet-600 via-fuchsia-500 to-cyan-500 p-8 text-white shadow-[0_20px_90px_rgba(124,58,237,0.25)]"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.3em]">Available for</p>
           <h3 className="mt-3 text-2xl font-semibold">Senior Frontend roles and product-focused engineering work</h3>

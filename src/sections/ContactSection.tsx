@@ -32,7 +32,7 @@ export function ContactSection() {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href={`mailto:${profile.email}?subject=Hello%20from%20your%20portfolio`} className="button-primary px-5 py-3 font-medium">
+              <a href={`mailto:${profile.email}?subject=Hello%20from%20your%20portfolio&body=Hi%20Anurag%2C%20I%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect.`} target="_self" className="button-primary px-5 py-3 font-medium">
                 Send an email <FiArrowRight />
               </a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer" className="button-secondary px-5 py-3 font-medium text-slate-700 dark:text-slate-200">

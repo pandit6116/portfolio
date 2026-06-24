@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { navLinks, profile } from '../data/portfolioData'
 import { ThemeToggle } from '../ui/ThemeToggle'
@@ -6,6 +7,15 @@ import { ScrollProgressBar } from '../ui/ScrollProgressBar'
 const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`
 
 export function AppShell({ children }) {
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual'
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+
+    return () => {
+      window.history.scrollRestoration = 'auto'
+    }
+  }, [])
+
   const scrollToSection = (sectionId) => {
     const target = document.getElementById(sectionId)
 
@@ -17,7 +27,8 @@ export function AppShell({ children }) {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }
 
-    window.history.replaceState({}, '', `${window.location.pathname}${window.location.search}#${sectionId}`)
+    const nextHash = sectionId === 'home' ? '' : `/${sectionId}`
+    window.history.replaceState({}, '', `${window.location.pathname}${window.location.search}${nextHash ? `#${nextHash}` : ''}`)
   }
 
   const handleNavClick = (event, href) => {
