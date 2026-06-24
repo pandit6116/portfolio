@@ -27,8 +27,9 @@ export function AppShell({ children }) {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }
 
-    const nextHash = sectionId === 'home' ? '' : `/${sectionId}`
-    window.history.replaceState({}, '', `${window.location.pathname}${window.location.search}${nextHash ? `#${nextHash}` : ''}`)
+    const nextHash = sectionId === 'home' ? '' : sectionId
+    const nextUrl = `${window.location.pathname}${window.location.search}${nextHash ? `#${nextHash}` : ''}`
+    window.history.replaceState({}, '', nextUrl)
   }
 
   const handleNavClick = (event, href) => {

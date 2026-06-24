@@ -19,8 +19,9 @@ const scrollToSection = (sectionId) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
-  const nextHash = sectionId === 'home' ? '' : `/${sectionId}`
-  window.history.replaceState({}, '', `${window.location.pathname}${window.location.search}${nextHash ? `#${nextHash}` : ''}`)
+  const nextHash = sectionId === 'home' ? '' : sectionId
+  const nextUrl = `${window.location.pathname}${window.location.search}${nextHash ? `#${nextHash}` : ''}`
+  window.history.replaceState({}, '', nextUrl)
 }
 
 const AboutSection = lazy(() => import('../sections/AboutSection').then((module) => ({ default: module.AboutSection })))
@@ -39,7 +40,8 @@ export function Home() {
   const { section } = useParams()
 
   useEffect(() => {
-    const targetId = section && section !== 'home' ? section : 'home'
+    const hashSection = window.location.hash.replace(/^#/, '')
+    const targetId = (section && section !== 'home' ? section : hashSection || 'home')
     const target = document.getElementById(targetId)
 
     if (target) {
