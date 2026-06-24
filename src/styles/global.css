@@ -1,0 +1,203 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  font-family: Inter, 'Segoe UI', Roboto, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fbff 0%, #f6ebff 42%, #eef9ff 100%);
+  color: #0f172a;
+  transition: background 0.3s ease, color 0.3s ease;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body::before,
+body::after,
+body::selection {
+  content: '';
+}
+
+body::before,
+body::after {
+  position: fixed;
+  inset: auto;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.72;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+
+body::before {
+  top: -7rem;
+  left: -10rem;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.62), rgba(236, 72, 153, 0.08) 55%, transparent 100%);
+}
+
+body::after {
+  right: -8rem;
+  bottom: -9rem;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.48), rgba(34, 211, 238, 0.06) 55%, transparent 100%);
+  animation-duration: 20s;
+}
+
+html.dark body {
+  background: linear-gradient(135deg, #020617 0%, #111827 30%, #0f172a 100%);
+  color: #f8fafc;
+}
+
+html.dark body::before {
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.55), rgba(244, 114, 182, 0.1) 55%, transparent 100%);
+}
+
+html.dark body::after {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.45), rgba(59, 130, 246, 0.08) 55%, transparent 100%);
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+::selection {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(18px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.hero-orb-one {
+  width: 16rem;
+  height: 16rem;
+  top: 3rem;
+  left: -4rem;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.85), rgba(236, 72, 153, 0.08) 55%, transparent 100%);
+}
+
+.hero-orb-two {
+  width: 20rem;
+  height: 20rem;
+  right: -4rem;
+  top: 8rem;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.6), rgba(16, 185, 129, 0.08) 55%, transparent 100%);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 20px 80px rgba(15, 23, 42, 0.12);
+}
+
+html.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 80px rgba(2, 6, 23, 0.4);
+}
+
+.section-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 70px rgba(15, 23, 42, 0.08);
+}
+
+html.dark .section-shell {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 70px rgba(2, 6, 23, 0.28);
+}
+
+.soft-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 45%, #4f46e5 100%);
+  color: white;
+  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 54px rgba(124, 58, 237, 0.34);
+}
+
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(18px);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+html.dark .button-secondary {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.button-secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(139, 92, 246, 0.38);
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2.5rem, -1.8rem, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(4rem, 2.5rem, 0) scale(1.16);
+  }
+}
